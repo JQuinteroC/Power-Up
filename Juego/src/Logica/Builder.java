@@ -18,6 +18,7 @@ public class Builder {
     }
 
     public void CrearPersonaje() {
+        constructor.ConstruirPersonaje();
         constructor.CrearAnimaciones();
     }
 }

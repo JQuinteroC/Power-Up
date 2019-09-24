@@ -12,7 +12,7 @@ public class Personaje {
     private ImageIcon[] saltar;
     private ImageIcon[] morir;
     private ImageIcon[] atacar;
-
+   
     public ImageIcon[] getCaminar() {
         return caminar;
     }

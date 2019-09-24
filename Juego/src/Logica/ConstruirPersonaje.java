@@ -12,5 +12,6 @@ public abstract class ConstruirPersonaje {
         return personaje;
     }
 
+    public abstract void ConstruirPersonaje();
     public abstract void CrearAnimaciones();
 }

@@ -44,7 +44,4 @@ public class Personaje {
     public void setAtacar(ImageIcon[] atacar) {
         this.atacar = atacar;
     }
-
-   
-
 }

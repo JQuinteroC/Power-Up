@@ -8,10 +8,7 @@ import java.io.IOException;
  * @author <a href="https://github.com/JQuinteroC">JQuinteroC</a>
  */
 public class JuegoIni {
-    /**
-     * 
-     * @param args 
-     */
+
     public static void main(String[] args) throws IOException {
         FRM_Selector interfaz = FRM_Selector.getInstance();
 

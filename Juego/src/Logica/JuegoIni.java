@@ -1,6 +1,7 @@
 package Logica;
 
 import GUI.FRM_Selector;
+import java.io.IOException;
 
 /**
  *
@@ -11,7 +12,7 @@ public class JuegoIni {
      * 
      * @param args 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         FRM_Selector interfaz = FRM_Selector.getInstance();
 
         try {

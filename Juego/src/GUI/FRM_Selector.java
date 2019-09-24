@@ -72,6 +72,11 @@ public class FRM_Selector extends javax.swing.JFrame {
         lblOgro.setMinimumSize(new java.awt.Dimension(387, 350));
         lblOgro.setPreferredSize(new java.awt.Dimension(387, 350));
         lblOgro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lblOgro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblOgroMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 50)); // NOI18N
         jLabel2.setText("Selector");
@@ -126,6 +131,12 @@ public class FRM_Selector extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_lblMagoMouseClicked
+
+    private void lblOgroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOgroMouseClicked
+        FRM_Visor2 ventana = new FRM_Visor2();
+        ventana.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_lblOgroMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

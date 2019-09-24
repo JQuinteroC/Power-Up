@@ -1,5 +1,9 @@
 package GUI;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author <a href="https://github.com/JQuinteroC">JQuinteroC</a>
@@ -55,7 +59,12 @@ public class FRM_Visor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
-        FRM_Selector selector = FRM_Selector.getInstance();
+        FRM_Selector selector = null;
+        try {
+            selector = FRM_Selector.getInstance();
+        } catch (IOException ex) {
+            Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         selector.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked

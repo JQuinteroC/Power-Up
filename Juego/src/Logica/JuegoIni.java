@@ -11,10 +11,7 @@ public class JuegoIni {
 
     public static void main(String[] args) throws IOException {
         FRM_Selector interfaz = FRM_Selector.getInstance();
-
-        Builder build = new Builder();
-        build.setConstructor(new Duende());
-        build.CrearPersonaje();
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

@@ -1,5 +1,7 @@
 package GUI;
 
+import Logica.Builder;
+import Logica.Duende;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -8,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +29,7 @@ public class FRM_Selector extends javax.swing.JFrame {
         Image s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_000.png"));
         ImageIcon l = new ImageIcon(s.getScaledInstance(387, 350, Image.SCALE_SMOOTH));
         lblMago.setIcon(l);
-        
+
         s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_000.png"));
         l = new ImageIcon(s.getScaledInstance(387, 350, Image.SCALE_SMOOTH));
         lblOgro.setIcon(l);
@@ -53,6 +56,11 @@ public class FRM_Selector extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         lblMago.setFocusable(false);
         lblMago.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -127,16 +135,25 @@ public class FRM_Selector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblMagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMagoMouseClicked
-        FRM_Visor ventana = new FRM_Visor();
-        ventana.setVisible(true);
-        this.setVisible(false);
+        //FRM_Visor ventana = new FRM_Visor();
+        //ventana.setVisible(true);
+        //this.setVisible(false);
     }//GEN-LAST:event_lblMagoMouseClicked
 
     private void lblOgroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOgroMouseClicked
-        FRM_Visor2 ventana = new FRM_Visor2();
+        Builder build = new Builder();
+        build.setConstructor(new Duende());
+        build.CrearPersonaje();
+        FRM_Visor ventana = new FRM_Visor(build.getPersonaje());
         ventana.setVisible(true);
         this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_lblOgroMouseClicked
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        JOptionPane.showMessageDialog(null, "Si Sirvo");    
+        
+    }//GEN-LAST:event_formKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

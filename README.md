@@ -1,2 +1,8 @@
 # Demo-Juego
-Prototype, abstract factory , builder
+Prototype, FactoryMethod , Builder
+
+Jose Quintero
+
+Mateo Ardila
+
+Johan Mendez

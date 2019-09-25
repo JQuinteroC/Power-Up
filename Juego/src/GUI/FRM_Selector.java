@@ -2,6 +2,7 @@ package GUI;
 
 import Logica.Builder;
 import Logica.Duende;
+import Logica.Mago;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -56,11 +57,6 @@ public class FRM_Selector extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
 
         lblMago.setFocusable(false);
         lblMago.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -135,9 +131,14 @@ public class FRM_Selector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblMagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMagoMouseClicked
-        //FRM_Visor ventana = new FRM_Visor();
-        //ventana.setVisible(true);
-        //this.setVisible(false);
+      /*  Builder build = new Builder();
+        build.setConstructor(new Mago());
+        build.CrearPersonaje();
+        FRM_Visor ventana = new FRM_Visor(build.getPersonaje());
+        ventana.setVisible(true);
+        this.setVisible(false);
+        dispose();
+        */
     }//GEN-LAST:event_lblMagoMouseClicked
 
     private void lblOgroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOgroMouseClicked
@@ -149,11 +150,6 @@ public class FRM_Selector extends javax.swing.JFrame {
         this.setVisible(false);
         dispose();
     }//GEN-LAST:event_lblOgroMouseClicked
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        JOptionPane.showMessageDialog(null, "Si Sirvo");    
-        
-    }//GEN-LAST:event_formKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

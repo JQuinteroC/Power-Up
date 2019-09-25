@@ -1,8 +1,15 @@
 package Logica;
 
+import static Logica.Personaje.hilo;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -15,8 +22,10 @@ public class Duende extends ConstruirPersonaje implements Cloneable {
     ImageIcon morir[];
     ImageIcon atacar[];
 
+    @Override
     public void ConstruirPersonaje() {
         personaje = new Personaje();
+        personaje.setHilo(24, 18, 15, 12);
     }
 
     @Override
@@ -26,34 +35,33 @@ public class Duende extends ConstruirPersonaje implements Cloneable {
         morir = new ImageIcon[15];
         atacar = new ImageIcon[12];
 
-        /*for (int i = 0; i < 24; i++) {
-            //caminar[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Goblin\\Walk\\0_Goblin_Walking_" + i + ".png")).getImage());
-            
+        for (int i = 0; i < 24; i++) {
+            try {
+                caminar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Goblin\\Walk\\0_Goblin_Walking_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Duende.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (int i = 0; i < 18; i++) {
-            //saltar[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Goblin\\Jump\\0_Goblin_Jump_" + i + ".png")).getImage());
-            
+            try {
+                saltar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Goblin\\Jump\\0_Goblin_Jump_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Duende.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (int i = 0; i < 15; i++) {
-            //morir[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Goblin\\Die\\0_Goblin_Dying_" + i + ".png")).getImage());
-            
+            try {
+                morir[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Goblin\\Die\\0_Goblin_Dying_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Duende.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (int i = 0; i < 12; i++) {
-            //atacar[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Goblin\\Attack\\0_Goblin_Slashing_" + i + ".png")).getImage());
-            
-        }*/
-        for (int i = 0; i < 24; i++) {
-            caminar[i] = new ImageIcon(new ImageIcon(getClass().getResource("/recursos/0_Goblin_Walking_" + i + ".png")).getImage());
-        }
-        for (int i = 0; i < 6; i++) {
-            saltar[i] = new ImageIcon(new ImageIcon(getClass().getResource("/recursos/0_Goblin_Jump Start_" + (i + 1) + ".png")).getImage());
-            saltar[11 - i] = new ImageIcon(new ImageIcon(getClass().getResource("/recursos/0_Goblin_Jump Start_" + (i + 1) + ".png")).getImage());
-        }
-        for (int i = 0; i < 15; i++) {
-            morir[i] = new ImageIcon(new ImageIcon(getClass().getResource("/recursos/0_Goblin_Dying_" + i + ".png")).getImage());
-        }
-        for (int i = 0; i < 12; i++) {
-            atacar[i] = new ImageIcon(new ImageIcon(getClass().getResource("/recursos/0_Goblin_Slashing_" + i + ".png")).getImage());
+            try {
+                atacar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Goblin\\Attack\\0_Goblin_Slashing_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Duende.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         personaje.setAtacar(atacar);

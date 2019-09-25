@@ -1,28 +1,59 @@
 package GUI;
 
 import Logica.Personaje;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.awt.Graphics;
-import javax.swing.JOptionPane;
+import java.awt.event.KeyListener;
 
-public class FRM_Visor extends javax.swing.JFrame implements Runnable {
+public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
-    Thread hilo;
     Personaje p;
     int x = 0;
     int numero = 0;
 
     public FRM_Visor(Personaje p) {
+        // Instancia de la ventana
         initComponents();
         super.setLocationRelativeTo(null);
+
+        // Configuración del personaje
         this.p = p;
         p.setPanel(panel);
         panel.add(p);
-        hilo = new Thread(this);
-        // hilo.start();
+
+
+        // Integración del listener 
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
     }
+
+    // <editor-fold defaultstate="collapsed" desc="Key listeners">  
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == 39) {
+            p.mover();
+        }
+        if (e.getKeyCode() == 38) {
+            p.saltar();
+        }
+        if (e.getKeyCode() == 37) {
+            p.atacar();
+        }
+        if (e.getKeyCode() == 40) {
+            p.morir();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }// </editor-fold>  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,11 +64,6 @@ public class FRM_Visor extends javax.swing.JFrame implements Runnable {
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                formKeyPressed(evt);
-            }
-        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel.setOpaque(false);
@@ -64,7 +90,7 @@ public class FRM_Visor extends javax.swing.JFrame implements Runnable {
         getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/catarata.png"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 570));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -80,64 +106,9 @@ public class FRM_Visor extends javax.swing.JFrame implements Runnable {
         this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked
 
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        JOptionPane.showMessageDialog(null, "Si Sirvo");
-        if (evt.getKeyCode() == 39) {
-            p.mover();
-        }
-        if (evt.getKeyCode() == 38) {
-            p.saltar();
-        }
-        if (evt.getKeyCode() == 37) {
-            p.Atacar();
-        }
-        if (evt.getKeyCode() == 40) {
-            p.Morir();
-        }
-    }//GEN-LAST:event_formKeyPressed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
-
-    public void run() {
-        try {
-            while (true) {
-                if (x == 0) {
-                    numero++;
-                    numero = numero % 24;
-
-                    this.repaint();
-
-                    hilo.sleep(80);
-                } else if (x == 1) {
-                    numero++;
-                    numero = numero % 12;
-
-                    this.repaint();
-
-                    hilo.sleep(80);
-                } else if (x == 2) {
-                    numero++;
-                    numero = numero % 15;
-
-                    this.repaint();
-
-                    hilo.sleep(80);
-                } else if (x == 3) {
-                    numero++;
-                    numero = numero % 12;
-
-                    this.repaint();
-
-                    hilo.sleep(80);
-                }
-            }
-
-        } catch (java.lang.InterruptedException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
 }

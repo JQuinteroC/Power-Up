@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  *
  * @author Mateo
  */
-public class Personaje extends JComponent{
+public class Personaje extends JComponent {
 
     private ImageIcon[] caminar;
     private ImageIcon[] saltar;
@@ -18,9 +18,52 @@ public class Personaje extends JComponent{
     static int x = 0;
     static int numero = 0;
     static JPanel panel = null;
+    static Thread hilo;
 
+    public void setHilo(int mover, int saltar,int morir, int atacar){
+        Personaje.hilo = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    while (true) {
+                        if (x == 0) {
+                            numero++;
+                            numero = numero % mover;
+
+                            panel.repaint();
+
+                            hilo.sleep(80);
+                        } else if (x == 1) {
+                            numero++;
+                            numero = numero % saltar;
+
+                            panel.repaint();
+
+                            hilo.sleep(80);
+                        } else if (x == 2) {
+                            numero++;
+                            numero = numero % morir;
+
+                            panel.repaint();
+
+                            hilo.sleep(80);
+                        } else if (x == 3) {
+                            numero++;
+                            numero = numero % atacar;
+
+                            panel.repaint();
+
+                            hilo.sleep(80);
+                        }
+                    }
+                } catch (java.lang.InterruptedException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        };
+    }
     public void setPanel(JPanel panel) {
-        this.panel = panel;
+        Personaje.panel = panel;
         setBounds(0, 0, panel.getWidth(), panel.getHeight());
     }
 
@@ -57,62 +100,19 @@ public class Personaje extends JComponent{
     }
 
     public void paint(Graphics g) {
-
         if (x == 0) {
-            g.drawImage(caminar[numero].getImage(), 50, 0, 400, 600, null);
+            g.drawImage(caminar[numero].getImage(), 50, 0, 587, 556, null);
         }
         if (x == 1) {
-            g.drawImage(saltar[numero].getImage(), 50, 0, 400, 600, null);
+            g.drawImage(saltar[numero].getImage(), 50, 0, 587, 556, null);
         }
         if (x == 2) {
-            g.drawImage(morir[numero].getImage(), 50, 0, 400, 600, null);
+            g.drawImage(morir[numero].getImage(), 50, 0, 587, 556, null);
         }
         if (x == 3) {
-            g.drawImage(atacar[numero].getImage(), 50, 0, 400, 600, null);
+            g.drawImage(atacar[numero].getImage(), 50, 0, 587, 556, null);
         }
     }
-
-    static Thread hilo = new Thread() {
-        @Override
-        public void run() {
-            try {
-                while (true) {
-                    if (x == 0) {
-                        numero++;
-                        numero = numero % 24;
-
-                        panel.repaint();
-
-                        hilo.sleep(80);
-                    } else if (x == 1) {
-                        numero++;
-                        numero = numero % 12;
-
-                        panel.repaint();
-
-                        hilo.sleep(80);
-                    } else if (x == 2) {
-                        numero++;
-                        numero = numero % 15;
-
-                        panel.repaint();
-
-                        hilo.sleep(80);
-                    } else if (x == 3) {
-                        numero++;
-                        numero = numero % 12;
-
-                        panel.repaint();
-
-                        hilo.sleep(80);
-                    }
-                }
-
-            } catch (java.lang.InterruptedException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-    };
 
     static public void mover() {
         x = 0;
@@ -130,7 +130,7 @@ public class Personaje extends JComponent{
         }
     }
 
-    static public void Morir() {
+    static public void morir() {
         x = 2;
         numero = 0;
         if (!hilo.isAlive()) {
@@ -138,7 +138,7 @@ public class Personaje extends JComponent{
         }
     }
 
-    static public void Atacar() {
+    static public void atacar() {
         x = 3;
         numero = 0;
         if (!hilo.isAlive()) {

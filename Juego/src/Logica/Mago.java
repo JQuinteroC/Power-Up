@@ -43,14 +43,4 @@ public class Mago extends ConstruirPersonaje implements Cloneable {
         personaje.setSaltar(saltar);
     }
 
-    /* public Personaje clone() {
-        Mago PersonajeClonado = null;
-        try {
-            PersonajeClonado = (Mago) super.clone();
-            PersonajeClonado.addAnimaciones();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        } // catch	
-        return PersonajeClonado;
-    } // method clone*/
 }

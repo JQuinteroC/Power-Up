@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author Mateo
  */
-public class Duende extends ConstruirPersonaje implements Cloneable {
+public class Duende extends ConstruirPersonaje{
 
     ImageIcon caminar[];
     ImageIcon saltar[];
@@ -70,14 +70,4 @@ public class Duende extends ConstruirPersonaje implements Cloneable {
         personaje.setSaltar(saltar);
     }
 
-    /* public Personaje clone() {
-        Duende PersonajeClonado = null;
-        try {
-            PersonajeClonado = (Duende) super.clone();
-            PersonajeClonado.addAnimaciones();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        } // catch	
-        return PersonajeClonado;
-    } // method clone*/
 }

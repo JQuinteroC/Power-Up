@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  *
  * @author Mateo
  */
-public class Personaje extends JComponent {
+public class Personaje extends JComponent implements Cloneable {
 
     private ImageIcon[] caminar;
     private ImageIcon[] saltar;
@@ -20,7 +20,7 @@ public class Personaje extends JComponent {
     static JPanel panel = null;
     static Thread hilo;
 
-    public void setHilo(int mover, int saltar,int morir, int atacar){
+    public void setHilo(int mover, int saltar, int morir, int atacar) {
         Personaje.hilo = new Thread() {
             @Override
             public void run() {
@@ -62,6 +62,17 @@ public class Personaje extends JComponent {
             }
         };
     }
+
+    public Personaje clone() {
+        Personaje PersonajeClonado = null;
+        try {
+            PersonajeClonado = (Personaje) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        } // catch	
+        return PersonajeClonado;
+    } // method clone
+
     public void setPanel(JPanel panel) {
         Personaje.panel = panel;
         setBounds(0, 0, panel.getWidth(), panel.getHeight());

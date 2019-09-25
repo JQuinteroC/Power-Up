@@ -6,10 +6,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
-    Personaje p;
+    ArrayList<Personaje> p = new ArrayList<Personaje>();
     int x = 0;
     int numero = 0;
 
@@ -19,10 +20,13 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         super.setLocationRelativeTo(null);
 
         // Configuración del personaje
-        this.p = p;
+        this.p.add(p);
+        this.p.add(p.clone());
+        this.p.add(p.clone());
         p.setPanel(panel);
-        panel.add(p);
-
+        panel.add(this.p.get(0));
+        panel.add(this.p.get(1));
+        panel.add(this.p.get(2));
 
         // Integración del listener 
         addKeyListener(this);
@@ -34,16 +38,16 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 39) {
-            p.mover();
+            p.get(0).mover();
         }
         if (e.getKeyCode() == 38) {
-            p.saltar();
+            p.get(0).saltar();
         }
         if (e.getKeyCode() == 37) {
-            p.atacar();
+            p.get(0).atacar();
         }
         if (e.getKeyCode() == 40) {
-            p.morir();
+            p.get(0).morir();
         }
     }
 

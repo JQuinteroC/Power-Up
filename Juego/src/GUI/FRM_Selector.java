@@ -131,14 +131,13 @@ public class FRM_Selector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblMagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMagoMouseClicked
-      /*  Builder build = new Builder();
+        Builder build = new Builder();
         build.setConstructor(new Mago());
         build.CrearPersonaje();
         FRM_Visor ventana = new FRM_Visor(build.getPersonaje());
         ventana.setVisible(true);
         this.setVisible(false);
         dispose();
-        */
     }//GEN-LAST:event_lblMagoMouseClicked
 
     private void lblOgroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOgroMouseClicked

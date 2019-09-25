@@ -17,10 +17,17 @@ public class Personaje extends JComponent implements Cloneable {
     private ImageIcon[] atacar;
     static int x = 0;
     static int numero = 0;
+    int ancho = 0;
+    int alto = 0;
+    boolean relacion = false; // Variable solo para mantener el aspecto en las animaciónes del Mago
     static JPanel panel = null;
     static Thread hilo;
 
-    public void setHilo(int mover, int saltar, int morir, int atacar) {
+    public Personaje() {
+        hilo = null;
+    }
+
+    public void setHilo(int mover, int saltar, int morir, int atacar, int sleep) {
         Personaje.hilo = new Thread() {
             @Override
             public void run() {
@@ -32,28 +39,28 @@ public class Personaje extends JComponent implements Cloneable {
 
                             panel.repaint();
 
-                            hilo.sleep(80);
+                            hilo.sleep(sleep);
                         } else if (x == 1) {
                             numero++;
                             numero = numero % saltar;
 
                             panel.repaint();
 
-                            hilo.sleep(80);
+                            hilo.sleep(sleep);
                         } else if (x == 2) {
                             numero++;
                             numero = numero % morir;
 
                             panel.repaint();
 
-                            hilo.sleep(80);
+                            hilo.sleep(sleep);
                         } else if (x == 3) {
                             numero++;
                             numero = numero % atacar;
 
                             panel.repaint();
 
-                            hilo.sleep(80);
+                            hilo.sleep(sleep);
                         }
                     }
                 } catch (java.lang.InterruptedException ex) {
@@ -63,6 +70,7 @@ public class Personaje extends JComponent implements Cloneable {
         };
     }
 
+    @Override
     public Personaje clone() {
         Personaje PersonajeClonado = null;
         try {
@@ -110,18 +118,31 @@ public class Personaje extends JComponent implements Cloneable {
         this.atacar = atacar;
     }
 
+    @Override
     public void paint(Graphics g) {
         if (x == 0) {
-            g.drawImage(caminar[numero].getImage(), 50, 0, 587, 556, null);
+            g.drawImage(caminar[numero].getImage(), 50, 0, ancho, alto, null);
         }
         if (x == 1) {
-            g.drawImage(saltar[numero].getImage(), 50, 0, 587, 556, null);
+            if (relacion) {
+                g.drawImage(saltar[numero].getImage(), 50, 0, ancho - 17, alto + 55, null);
+            } else {
+                g.drawImage(saltar[numero].getImage(), 50, 0, ancho, alto, null);
+            }
         }
         if (x == 2) {
-            g.drawImage(morir[numero].getImage(), 50, 0, 587, 556, null);
+            if (relacion) {
+                g.drawImage(morir[numero].getImage(), 50, 0, ancho - 38, alto - 18, null);
+            } else {
+                g.drawImage(morir[numero].getImage(), 50, 0, ancho, alto, null);
+            }
         }
         if (x == 3) {
-            g.drawImage(atacar[numero].getImage(), 50, 0, 587, 556, null);
+            if (relacion) {
+                g.drawImage(atacar[numero].getImage(), 50, 0, ancho + 266, alto + 55, null);
+            } else {
+                g.drawImage(atacar[numero].getImage(), 50, 0, ancho, alto, null);
+            }
         }
     }
 

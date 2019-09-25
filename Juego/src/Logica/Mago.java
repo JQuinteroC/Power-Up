@@ -1,12 +1,17 @@
 package Logica;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author <a href="https://github.com/JQuinteroC">JQuinteroC</a>
  */
-public class Mago extends ConstruirPersonaje implements Cloneable {
+public class Mago extends ConstruirPersonaje {
 
     ImageIcon caminar[];
     ImageIcon saltar[];
@@ -15,6 +20,10 @@ public class Mago extends ConstruirPersonaje implements Cloneable {
 
     public void ConstruirPersonaje() {
         personaje = new Personaje();
+        personaje.setHilo(5, 5, 5, 5, 100);
+        personaje.ancho = 419;
+        personaje.alto = 381;
+        personaje.relacion = true;
     }
 
     @Override
@@ -25,16 +34,32 @@ public class Mago extends ConstruirPersonaje implements Cloneable {
         atacar = new ImageIcon[5];
 
         for (int i = 0; i < 5; i++) {
-            caminar[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Wizard\\Walk\\2_WALK_" + i + ".png")).getImage());
+            try {
+                caminar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Wizard\\Walk\\2_WALK_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Mago.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (int i = 0; i < 5; i++) {
-            saltar[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Wizard\\Jump\\4_JUMP_" + i + ".png")).getImage());
+            try {
+                saltar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Wizard\\Jump\\4_JUMP_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Mago.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (int i = 0; i < 5; i++) {
-            morir[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Wizard\\Die\\7_DIE_" + i + ".png")).getImage());
+            try {
+                morir[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Wizard\\Die\\7_DIE_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Mago.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         for (int i = 0; i < 5; i++) {
-            atacar[i] = new ImageIcon(new ImageIcon(getClass().getResource("Recursos\\Wizard\\Attack\\5_ATTACK_" + i + ".png")).getImage());
+            try {
+                atacar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Wizard\\Attack\\5_ATTACK_" + i + ".png")));
+            } catch (IOException ex) {
+                Logger.getLogger(Mago.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         personaje.setAtacar(atacar);

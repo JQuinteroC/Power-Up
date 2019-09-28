@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
-    ArrayList<Personaje> p = new ArrayList<Personaje>();
+    ArrayList<Personaje> p = new ArrayList<>();
     int x = 0;
     int numero = 0;
 
@@ -107,6 +107,12 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
             Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
         }
         selector.setVisible(true);
+        
+        // Se interrumpe el hilo
+        for (int i = 0; i < p.size(); i++) {
+            p.get(i).hilo.interrupt();
+        }
+        
         this.dispose();
     }//GEN-LAST:event_btnRegresarMouseClicked
 

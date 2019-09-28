@@ -20,7 +20,7 @@ public class Mago extends ConstruirPersonaje {
 
     public void ConstruirPersonaje() {
         personaje = new Personaje();
-        personaje.setHilo(5, 5, 5, 5, 100);
+        personaje.setHilo(5, 5, 5, 5, 130);
         personaje.ancho = 419;
         personaje.alto = 381;
         personaje.relacion = true;

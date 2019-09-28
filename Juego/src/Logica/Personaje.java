@@ -21,10 +21,21 @@ public class Personaje extends JComponent implements Cloneable {
     int alto = 0;
     boolean relacion = false; // Variable solo para mantener el aspecto en las animaciónes del Mago
     static JPanel panel = null;
-    static Thread hilo;
+    public static Thread hilo;
 
     public Personaje() {
+        // Se limpian todas las varibales para el cambio de personaje
         hilo = null;
+        caminar = null;
+        saltar = null;
+        morir = null;
+        atacar = null;
+        x = 0;
+        numero = 0;
+        ancho = 0;
+        alto = 0;
+        relacion = false;
+        panel = null;        
     }
 
     public void setHilo(int mover, int saltar, int morir, int atacar, int sleep) {

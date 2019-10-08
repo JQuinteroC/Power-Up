@@ -1,5 +1,5 @@
 # Power-Up
-Aplicando los modelos prototype, factory method y Builder, crear un selector de personajes y animar los personajes con sus clones
+Aplicando los modelos Decorator y Composite, crear un power-up y gestionar el comportamiento poblacional
 
 Jose Quintero
 

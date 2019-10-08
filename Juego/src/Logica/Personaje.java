@@ -19,7 +19,8 @@ public class Personaje extends JComponent implements Cloneable {
     static int numero = 0;
     int ancho = 0;
     int alto = 0;
-    int desplazamiento = 0;
+    int desplazamientoVertical = 0;
+    int desplazamientoHorizontal = 0;
     boolean relacion = false; // Variable solo para mantener el aspecto en las animaciónes del Mago
     static JPanel panel = null;
     public static Thread hilo;
@@ -28,8 +29,12 @@ public class Personaje extends JComponent implements Cloneable {
         return relacion;
     }
 
-    public void setDesplazamiento(int desplazamiento) {
-        this.desplazamiento = desplazamiento;
+    public void setDesplazamientoVertical(int desplazamiento) {
+        this.desplazamientoVertical = desplazamiento;
+    }
+    
+    public void setDesplazamientoHorizontal(int desplazamiento) {
+        this.desplazamientoHorizontal = desplazamiento;
     }
 
     public void setAncho(int ancho) {
@@ -154,27 +159,27 @@ public class Personaje extends JComponent implements Cloneable {
     @Override
     public void paint(Graphics g) {
         if (x == 0) {
-            g.drawImage(caminar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
+            g.drawImage(caminar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
         }
         if (x == 1) {
             if (relacion) {
-                g.drawImage(saltar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho - 17 + desplazamiento, alto + 55 + desplazamiento, null);
+                g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 17 , alto + 55 , null);
             } else {
-                g.drawImage(saltar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
+                g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
             }
         }
         if (x == 2) {
             if (relacion) {
-                g.drawImage(morir[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho - 38 + desplazamiento, alto - 18 + desplazamiento, null);
+                g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 38 , alto - 18 , null);
             } else {
-                g.drawImage(morir[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
+                g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
             }
         }
         if (x == 3) {
             if (relacion) {
-                g.drawImage(atacar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + 266 + desplazamiento, alto + 55 + desplazamiento, null);
+                g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho + 266 , alto + 55 , null);
             } else {
-                g.drawImage(atacar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
+                g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
             }
         }
     }

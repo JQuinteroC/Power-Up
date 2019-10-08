@@ -25,8 +25,10 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         this.p.add(p);
         this.p.add(p.clone());
         this.p.add(p.clone());
-        this.p.get(1).setDesplazamiento(-80);
-        this.p.get(2).setDesplazamiento(80);
+        this.p.get(1).setDesplazamientoVertical(-20);
+        this.p.get(1).setDesplazamientoHorizontal(-70);
+        this.p.get(2).setDesplazamientoVertical(-20);
+        this.p.get(2).setDesplazamientoHorizontal(70);
         panel.add(this.p.get(0));
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));

@@ -1,6 +1,7 @@
 package GUI;
 
 import Logica.Personaje;
+import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -23,10 +24,14 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         this.p.add(p);
         this.p.add(p.clone());
         this.p.add(p.clone());
+        this.p.get(1).setDesplazamiento(50);
+        this.p.get(2).setDesplazamiento(100);
         p.setPanel(panel);
+        
         panel.add(this.p.get(0));
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));
+        
 
         // Integración del listener 
         addKeyListener(this);
@@ -39,15 +44,23 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == 39) {
             p.get(0).mover();
+            p.get(1).mover();
+            p.get(2).mover();
         }
         if (e.getKeyCode() == 38) {
             p.get(0).saltar();
+            p.get(1).saltar();
+            p.get(2).saltar();
         }
         if (e.getKeyCode() == 37) {
             p.get(0).atacar();
+            p.get(1).atacar();
+            p.get(2).atacar();
         }
         if (e.getKeyCode() == 40) {
             p.get(0).morir();
+            p.get(1).morir();
+            p.get(2).morir();
         }
     }
 
@@ -85,7 +98,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
         getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 640, 540));
 
-        btnRegresar.setText("jButton1");
+        btnRegresar.setText("Regresar");
         btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegresarMouseClicked(evt);

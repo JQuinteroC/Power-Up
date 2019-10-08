@@ -25,7 +25,7 @@ public class Duende extends ConstruirPersonaje{
     @Override
     public void ConstruirPersonaje() {
         personaje = new Personaje();
-        personaje.setHilo(24, 18, 15, 12, 80);
+        personaje.setHilo(24, 18, 15, 12, 50);
         personaje.ancho = 587;
         personaje.alto = 556;
     }

@@ -3,7 +3,6 @@ package GUI;
 import Logica.Builder;
 import Logica.Duende;
 import Logica.Mago;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -12,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,6 +59,7 @@ public class FRM_Selector extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(834, 488));
 
         lblMago.setText("MAGO");
         lblMago.setVerticalAlignment(javax.swing.SwingConstants.TOP);

@@ -18,6 +18,7 @@ public class Mago extends ConstruirPersonaje {
     ImageIcon morir[];
     ImageIcon atacar[];
 
+    @Override
     public void ConstruirPersonaje() {
         personaje = new Personaje();
         personaje.setHilo(5, 5, 5, 5, 130);

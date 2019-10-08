@@ -66,34 +66,33 @@ public class Personaje extends JComponent implements Cloneable {
             public void run() {
                 try {
                     while (true) {
-                        if (x == 0) {
-                            numero++;
-                            numero = numero % mover;
-
-                            panel.repaint();
-
-                            hilo.sleep(sleep);
-                        } else if (x == 1) {
-                            numero++;
-                            numero = numero % saltar;
-
-                            panel.repaint();
-
-                            hilo.sleep(sleep);
-                        } else if (x == 2) {
-                            numero++;
-                            numero = numero % morir;
-
-                            panel.repaint();
-
-                            hilo.sleep(sleep);
-                        } else if (x == 3) {
-                            numero++;
-                            numero = numero % atacar;
-
-                            panel.repaint();
-
-                            hilo.sleep(sleep);
+                        switch (x) {
+                            case 0:
+                                numero++;
+                                numero = numero % mover;
+                                panel.repaint();
+                                hilo.sleep(sleep);
+                                break;
+                            case 1:
+                                numero++;
+                                numero = numero % saltar;
+                                panel.repaint();
+                                hilo.sleep(sleep);
+                                break;
+                            case 2:
+                                numero++;
+                                numero = numero % morir;
+                                panel.repaint();
+                                hilo.sleep(sleep);
+                                break;
+                            case 3:
+                                numero++;
+                                numero = numero % atacar;
+                                panel.repaint();
+                                hilo.sleep(sleep);
+                                break;
+                            default:
+                                break;
                         }
                     }
                 } catch (java.lang.InterruptedException ex) {
@@ -114,7 +113,6 @@ public class Personaje extends JComponent implements Cloneable {
                 PersonajeClonado.setHilo(24, 18, 15, 12, 50);
             }
         } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
         } // catch	
         return PersonajeClonado;
     } // method clone

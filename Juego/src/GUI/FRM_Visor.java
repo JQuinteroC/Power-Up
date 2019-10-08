@@ -21,13 +21,12 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         super.setLocationRelativeTo(null);
 
         // Configuración del personaje
+        p.setPanel(panel);
         this.p.add(p);
         this.p.add(p.clone());
         this.p.add(p.clone());
-        this.p.get(1).setDesplazamiento(50);
-        this.p.get(2).setDesplazamiento(100);
-        p.setPanel(panel);
-        
+        this.p.get(1).setDesplazamiento(-80);
+        this.p.get(2).setDesplazamiento(80);
         panel.add(this.p.get(0));
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));

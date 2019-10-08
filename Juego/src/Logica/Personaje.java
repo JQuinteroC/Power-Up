@@ -24,10 +24,14 @@ public class Personaje extends JComponent implements Cloneable {
     static JPanel panel = null;
     public static Thread hilo;
 
+    public boolean isRelacion() {
+        return relacion;
+    }
+
     public void setDesplazamiento(int desplazamiento) {
         this.desplazamiento = desplazamiento;
     }
-    
+
     public void setAncho(int ancho) {
         this.ancho = ancho;
     }
@@ -48,7 +52,7 @@ public class Personaje extends JComponent implements Cloneable {
         ancho = 0;
         alto = 0;
         relacion = false;
-        panel = null;        
+        panel = null;
     }
 
     public void setHilo(int mover, int saltar, int morir, int atacar, int sleep) {
@@ -99,6 +103,11 @@ public class Personaje extends JComponent implements Cloneable {
         Personaje PersonajeClonado = null;
         try {
             PersonajeClonado = (Personaje) super.clone();
+            if (PersonajeClonado.isRelacion()) {
+                PersonajeClonado.setHilo(5, 5, 5, 5, 130);
+            } else {
+                PersonajeClonado.setHilo(24, 18, 15, 12, 50);
+            }
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         } // catch	
@@ -145,27 +154,27 @@ public class Personaje extends JComponent implements Cloneable {
     @Override
     public void paint(Graphics g) {
         if (x == 0) {
-            g.drawImage(caminar[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho+desplazamiento, alto+desplazamiento, null);
+            g.drawImage(caminar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
         }
         if (x == 1) {
             if (relacion) {
-                g.drawImage(saltar[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho - 17+desplazamiento, alto + 55+desplazamiento, null);
+                g.drawImage(saltar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho - 17 + desplazamiento, alto + 55 + desplazamiento, null);
             } else {
-                g.drawImage(saltar[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho+desplazamiento, alto+desplazamiento, null);
+                g.drawImage(saltar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
             }
         }
         if (x == 2) {
             if (relacion) {
-                g.drawImage(morir[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho - 38+desplazamiento, alto - 18+desplazamiento, null);
+                g.drawImage(morir[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho - 38 + desplazamiento, alto - 18 + desplazamiento, null);
             } else {
-                g.drawImage(morir[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho+desplazamiento, alto+desplazamiento, null);
+                g.drawImage(morir[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
             }
         }
         if (x == 3) {
             if (relacion) {
-                g.drawImage(atacar[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho + 266+desplazamiento, alto + 55+desplazamiento, null);
+                g.drawImage(atacar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + 266 + desplazamiento, alto + 55 + desplazamiento, null);
             } else {
-                g.drawImage(atacar[numero].getImage(), 50+desplazamiento, 0+desplazamiento, ancho+desplazamiento, alto+desplazamiento, null);
+                g.drawImage(atacar[numero].getImage(), 50 + desplazamiento, 0 + desplazamiento, ancho + desplazamiento, alto + desplazamiento, null);
             }
         }
     }

@@ -15,15 +15,15 @@ public class Personaje extends JComponent implements Cloneable {
     private ImageIcon[] saltar;
     private ImageIcon[] morir;
     private ImageIcon[] atacar;
-    static int x = 0;
-    static int numero = 0;
+    int x = 0;
+    int numero = 0;
     int ancho = 0;
     int alto = 0;
     int desplazamientoVertical = 0;
     int desplazamientoHorizontal = 0;
     boolean relacion = false; // Variable solo para mantener el aspecto en las animaciónes del Mago
     static JPanel panel = null;
-    public static Thread hilo;
+    public Thread hilo;
 
     public boolean isRelacion() {
         return relacion;
@@ -32,7 +32,7 @@ public class Personaje extends JComponent implements Cloneable {
     public void setDesplazamientoVertical(int desplazamiento) {
         this.desplazamientoVertical = desplazamiento;
     }
-    
+
     public void setDesplazamientoHorizontal(int desplazamiento) {
         this.desplazamientoHorizontal = desplazamiento;
     }
@@ -158,33 +158,41 @@ public class Personaje extends JComponent implements Cloneable {
 
     @Override
     public void paint(Graphics g) {
-        if (x == 0) {
-            g.drawImage(caminar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
-        }
-        if (x == 1) {
-            if (relacion) {
-                g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 17 , alto + 55 , null);
-            } else {
-                g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
+        try {
+            switch (x) {
+                case 0:
+                    g.drawImage(caminar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
+                    break;
+                case 1:
+                    if (relacion) {
+                        g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 17, alto + 55, null);
+                    } else {
+                        g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
+                    }
+                    break;
+                case 2:
+                    if (relacion) {
+                        g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 38, alto - 18, null);
+                    } else {
+                        g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
+                    }
+                    break;
+                case 3:
+                    if (relacion) {
+                        g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho + 266, alto + 55, null);
+                    } else {
+                        g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
+                    }
+                    break;
+                default:
+                    break;
             }
-        }
-        if (x == 2) {
-            if (relacion) {
-                g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 38 , alto - 18 , null);
-            } else {
-                g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
-            }
-        }
-        if (x == 3) {
-            if (relacion) {
-                g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho + 266 , alto + 55 , null);
-            } else {
-                g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho , alto , null);
-            }
+        } catch(Exception ex){
+            
         }
     }
 
-    static public void mover() {
+    public void mover() {
         x = 0;
         numero = 0;
         if (!hilo.isAlive()) {
@@ -192,7 +200,7 @@ public class Personaje extends JComponent implements Cloneable {
         }
     }
 
-    static public void saltar() {
+    public void saltar() {
         x = 1;
         numero = 0;
         if (!hilo.isAlive()) {
@@ -200,7 +208,7 @@ public class Personaje extends JComponent implements Cloneable {
         }
     }
 
-    static public void morir() {
+    public void morir() {
         x = 2;
         numero = 0;
         if (!hilo.isAlive()) {
@@ -208,7 +216,7 @@ public class Personaje extends JComponent implements Cloneable {
         }
     }
 
-    static public void atacar() {
+    public void atacar() {
         x = 3;
         numero = 0;
         if (!hilo.isAlive()) {

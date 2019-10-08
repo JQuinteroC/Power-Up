@@ -25,13 +25,17 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         this.p.add(p);
         this.p.add(p.clone());
         this.p.add(p.clone());
-        this.p.get(1).setDesplazamientoVertical(-20);
-        this.p.get(1).setDesplazamientoHorizontal(-70);
-        this.p.get(2).setDesplazamientoVertical(-20);
-        this.p.get(2).setDesplazamientoHorizontal(70);
+        this.p.add(p.clone());
+        this.p.get(1).setDesplazamientoVertical(45);
+        this.p.get(1).setDesplazamientoHorizontal(460);
+        this.p.get(2).setDesplazamientoVertical(-10);
+        this.p.get(2).setDesplazamientoHorizontal(530);
+        this.p.get(3).setDesplazamientoVertical(-10);
+        this.p.get(3).setDesplazamientoHorizontal(390);
         panel.add(this.p.get(0));
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));
+        panel.add(this.p.get(3));
         
 
         // Integración del listener 
@@ -43,25 +47,45 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     // <editor-fold defaultstate="collapsed" desc="Key listeners">  
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == 39) {
-            p.get(0).mover();
-            p.get(1).mover();
-            p.get(2).mover();
+        switch (e.getKeyCode()) { //Personaje Individual
+            case 39:
+                p.get(0).mover();
+                break;
+            case 38:
+                p.get(0).saltar();
+                break;
+            case 37:
+                p.get(0).atacar();
+                break;
+            case 40:
+                p.get(0).morir();
+                break;
+            default:
+                break;
         }
-        if (e.getKeyCode() == 38) {
-            p.get(0).saltar();
-            p.get(1).saltar();
-            p.get(2).saltar();
-        }
-        if (e.getKeyCode() == 37) {
-            p.get(0).atacar();
-            p.get(1).atacar();
-            p.get(2).atacar();
-        }
-        if (e.getKeyCode() == 40) {
-            p.get(0).morir();
-            p.get(1).morir();
-            p.get(2).morir();
+        switch (e.getKeyChar()) { //Personaje en Grupo
+            case 'w':
+                p.get(1).saltar();
+                p.get(2).saltar();
+                p.get(3).saltar();
+                break;
+            case 'a':
+                p.get(1).atacar();
+                p.get(2).atacar();
+                p.get(3).atacar();
+                break;
+            case 's':
+                p.get(1).morir();
+                p.get(2).morir();
+                p.get(3).morir();
+                break;
+            case 'd':
+                p.get(1).mover();
+                p.get(2).mover();
+                p.get(3).mover();
+                break;
+            default:
+                break;
         }
     }
 
@@ -90,14 +114,14 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 640, Short.MAX_VALUE)
+            .add(0, 1020, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 540, Short.MAX_VALUE)
+            .add(0, 570, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 640, 540));
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1020, 570));
 
         btnRegresar.setText("Regresar");
         btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -105,7 +129,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                 btnRegresarMouseClicked(evt);
             }
         });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 10, -1, -1));
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 10, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/catarata.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 590));

@@ -26,11 +26,11 @@ public class FRM_Selector extends javax.swing.JFrame {
     private FRM_Selector() throws IOException {
         initComponents();
         super.setLocationRelativeTo(null);
-        Image s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_000.png"));
+        Image s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_0.png"));
         ImageIcon l = new ImageIcon(s.getScaledInstance(387, 350, Image.SCALE_SMOOTH));
         lblMago.setIcon(l);
 
-        s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_000.png"));
+        s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_0.png"));
         l = new ImageIcon(s.getScaledInstance(387, 350, Image.SCALE_SMOOTH));
         lblDuende.setIcon(l);
     }
@@ -171,7 +171,7 @@ public class FRM_Selector extends javax.swing.JFrame {
     private void lblMagoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMagoMouseEntered
         Image s = null;
         try {
-            s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_000-.png"));
+            s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_0-.png"));
         } catch (IOException ex) {
             Logger.getLogger(FRM_Selector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -182,7 +182,7 @@ public class FRM_Selector extends javax.swing.JFrame {
     private void lblMagoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMagoMouseExited
         Image s = null;
         try {
-            s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_000.png"));
+            s = ImageIO.read(new File("Recursos\\Wizard\\Idle\\1_IDLE_0.png"));
         } catch (IOException ex) {
             Logger.getLogger(FRM_Selector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -193,7 +193,7 @@ public class FRM_Selector extends javax.swing.JFrame {
     private void lblDuendeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDuendeMouseEntered
         Image s = null;
         try {
-            s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_000-.png"));
+            s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_0-.png"));
         } catch (IOException ex) {
             Logger.getLogger(FRM_Selector.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,7 +204,7 @@ public class FRM_Selector extends javax.swing.JFrame {
     private void lblDuendeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDuendeMouseExited
         Image s = null;
         try {
-            s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_000.png"));
+            s = ImageIO.read(new File("Recursos\\Goblin\\Idle\\Goblin_Idle_0.png"));
         } catch (IOException ex) {
             Logger.getLogger(FRM_Selector.class.getName()).log(Level.SEVERE, null, ex);
         }

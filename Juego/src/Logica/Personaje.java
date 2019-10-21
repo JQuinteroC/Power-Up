@@ -15,6 +15,7 @@ public class Personaje extends JComponent implements Cloneable {
     protected ImageIcon[] saltar;
     protected ImageIcon[] morir;
     protected ImageIcon[] atacar;
+    public int desplazamiento;
     int x = 0;
     int numero = 0;
     int ancho = 0;
@@ -69,6 +70,22 @@ public class Personaje extends JComponent implements Cloneable {
                         switch (x) {
                             case 0:
                                 numero++;
+                                switch (desplazamiento) { //Personaje Individual
+                                    case 39:
+                                        desplazamientoHorizontal += 8;
+                                        break;
+                                    case 38:
+                                        desplazamientoVertical -= 8;
+                                        break;
+                                    case 37:
+                                        desplazamientoHorizontal -= 8;
+                                        break;
+                                    case 40:
+                                        desplazamientoVertical += 8;
+                                        break;
+                                    default:
+                                        break;
+                                }
                                 numero = numero % mover;
                                 panel.repaint();
                                 hilo.sleep(sleep);
@@ -185,8 +202,8 @@ public class Personaje extends JComponent implements Cloneable {
                 default:
                     break;
             }
-        } catch(Exception ex){
-            
+        } catch (Exception ex) {
+
         }
     }
 

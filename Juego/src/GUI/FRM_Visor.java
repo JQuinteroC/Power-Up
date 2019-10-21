@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
@@ -35,7 +36,6 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));
         panel.add(this.p.get(3));
-        
 
         // Integración del listener 
         addKeyListener(this);
@@ -46,17 +46,31 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     // <editor-fold defaultstate="collapsed" desc="Key listeners">  
     @Override
     public void keyPressed(KeyEvent e) {
+        //JOptionPane.showMessageDialog(null, e.getKeyChar());
         switch (e.getKeyCode()) { //Personaje Individual
             case 39:
                 p.get(0).mover();
+                p.get(0).desplazamiento = 39;
                 break;
             case 38:
-                p.get(0).saltar();
+                p.get(0).mover();
+                p.get(0).desplazamiento = 38;
                 break;
             case 37:
-                p.get(0).atacar();
+                p.get(0).mover();
+                p.get(0).desplazamiento = 37;
                 break;
             case 40:
+                p.get(0).mover();
+                p.get(0).desplazamiento = 40;
+                break;
+            case 97:
+                p.get(0).atacar();
+                break;
+            case 98:
+                p.get(0).saltar();
+                break;
+            case 99:
                 p.get(0).morir();
                 break;
             default:
@@ -64,24 +78,67 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         }
         switch (e.getKeyChar()) { //Personaje en Grupo
             case 'w':
-                p.get(1).saltar();
-                p.get(2).saltar();
-                p.get(3).saltar();
+                p.get(1).mover();
+                p.get(2).mover();
+                p.get(3).mover();
+                p.get(1).desplazamiento=38;
+                p.get(2).desplazamiento=38;
+                p.get(3).desplazamiento=38;
                 break;
             case 'a':
-                p.get(1).atacar();
-                p.get(2).atacar();
-                p.get(3).atacar();
+                p.get(1).mover();
+                p.get(2).mover();
+                p.get(3).mover();
+                p.get(1).desplazamiento=37;
+                p.get(2).desplazamiento=37;
+                p.get(3).desplazamiento=37;
                 break;
             case 's':
-                p.get(1).morir();
-                p.get(2).morir();
-                p.get(3).morir();
+                p.get(1).mover();
+                p.get(2).mover();
+                p.get(3).mover();
+                p.get(1).desplazamiento=40;
+                p.get(2).desplazamiento=40;
+                p.get(3).desplazamiento=40;
                 break;
             case 'd':
                 p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
+                p.get(1).desplazamiento=39;
+                p.get(2).desplazamiento=39;
+                p.get(3).desplazamiento=39;
+                break;
+            case 'e':
+                p.get(1).atacar();
+                p.get(2).atacar();  // espacio:32,enter:10,e:69, f:70,a:65, 1:97, 2:98, 3: 99
+                p.get(3).atacar();
+                break;
+            case 'r':
+                p.get(1).morir();
+                p.get(2).morir();
+                p.get(3).morir();
+                break;
+            case 'f':
+                p.get(1).saltar();
+                p.get(2).saltar();
+                p.get(3).saltar();
+                break;
+            case 'q':
+                FRM_Selector selector = null;
+                try {
+                    selector = FRM_Selector.getInstance();
+                } catch (IOException ex) {
+                    Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                selector.setVisible(true);
+
+                // Se interrumpe el hilo
+                for (int i = 0; i < p.size(); i++) {
+                    p.get(i).hilo.interrupt();
+                }
+
+                this.dispose();
                 break;
             default:
                 break;
@@ -101,12 +158,10 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        btnRegresar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 600));
-        setPreferredSize(new java.awt.Dimension(1200, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel.setOpaque(false);
@@ -115,22 +170,14 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 1090, Short.MAX_VALUE)
+            .add(0, 1200, Short.MAX_VALUE)
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 570, Short.MAX_VALUE)
+            .add(0, 600, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1090, 570));
-
-        btnRegresar.setText("Regresar");
-        btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegresarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 10, -1, -1));
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 600));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/catarata.png"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 600));
@@ -138,25 +185,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseClicked
-        FRM_Selector selector = null;
-        try {
-            selector = FRM_Selector.getInstance();
-        } catch (IOException ex) {
-            Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        selector.setVisible(true);
-        
-        // Se interrumpe el hilo
-        for (int i = 0; i < p.size(); i++) {
-            p.get(i).hilo.interrupt();
-        }
-        
-        this.dispose();
-    }//GEN-LAST:event_btnRegresarMouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables

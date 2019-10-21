@@ -11,10 +11,10 @@ import javax.swing.JPanel;
  */
 public class Personaje extends JComponent implements Cloneable {
 
-    private ImageIcon[] caminar;
-    private ImageIcon[] saltar;
-    private ImageIcon[] morir;
-    private ImageIcon[] atacar;
+    protected ImageIcon[] caminar;
+    protected ImageIcon[] saltar;
+    protected ImageIcon[] morir;
+    protected ImageIcon[] atacar;
     int x = 0;
     int numero = 0;
     int ancho = 0;

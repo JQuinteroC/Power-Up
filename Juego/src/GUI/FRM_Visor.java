@@ -12,15 +12,13 @@ import javax.swing.JOptionPane;
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
     ArrayList<Personaje> p = new ArrayList<>();
-    int x = 0;
-    int numero = 0;
 
     public FRM_Visor(Personaje p) {
         // Instancia de la ventana
         initComponents();
         super.setLocationRelativeTo(null);
 
-        // Configuración del personaje
+        // Configuración del personaje y grupo
         p.setPanel(panel);
         this.p.add(p);
         this.p.add(p.clone());

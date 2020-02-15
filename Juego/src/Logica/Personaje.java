@@ -9,7 +9,7 @@ import javax.swing.JPanel;
  *
  * @author Mateo
  */
-public class Personaje extends JComponent implements Cloneable {
+public class Personaje extends JComponent implements Cloneable, Composite {
 
     protected ImageIcon[] caminar;
     protected ImageIcon[] saltar;
@@ -243,4 +243,14 @@ public class Personaje extends JComponent implements Cloneable {
             hilo.start();
         }
     }
+    
+    //operacion necesaria para el manejo de poblaciones
+    public void operacion(int accion){
+        if (accion == 1){
+            this.desplazamiento=39;
+            this.mover();
+            
+        } 
+    }
+    
 }

@@ -1,6 +1,7 @@
 package GUI;
 
 import Logica.Personaje;
+import Logica.Poblacion;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -12,7 +13,10 @@ import javax.swing.JOptionPane;
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
     ArrayList<Personaje> p = new ArrayList<>();
-
+    
+    Poblacion grupo = new Poblacion("Grupo1");
+    Poblacion grupo2 = new Poblacion("Grupo2");
+            
     public FRM_Visor(Personaje p) {
         // Instancia de la ventana
         initComponents();
@@ -35,6 +39,12 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         panel.add(this.p.get(2));
         panel.add(this.p.get(3));
 
+        //se crean las poblaciones del patron Composite
+        grupo.addPersonaje(this.p.get(0));
+        grupo2.addPersonaje(this.p.get(1));
+        grupo2.addPersonaje(this.p.get(2));
+        grupo2.addPersonaje(this.p.get(3));
+        
         // Integración del listener 
         addKeyListener(this);
         setFocusable(true);
@@ -74,7 +84,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
             default:
                 break;
         }
-        switch (e.getKeyChar()) { //Personaje en Grupo
+        switch (e.getKeyChar()) { //Personaje clonado
             case 'w':
                 p.get(1).mover();
                 p.get(2).mover();

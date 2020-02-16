@@ -43,7 +43,7 @@ public class ConstructorDuende extends ConstruirPersonaje {
         }
         for (int i = 0; i < 12; i++) {
             try {
-                personaje.atacar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Goblin\\Attack\\0_Goblin_Kicking_" + i + ".png")));
+                personaje.atacar[i] = new ImageIcon(ImageIO.read(new File("Recursos\\Goblin\\Attack\\0_Goblin_Attack_" + i + ".png")));
             } catch (IOException ex) {
                 Logger.getLogger(Duende.class.getName()).log(Level.SEVERE, null, ex);
             }

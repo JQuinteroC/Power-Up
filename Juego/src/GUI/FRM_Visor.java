@@ -1,5 +1,6 @@
 package GUI;
 
+import Logica.Mascota;
 import Logica.Personaje;
 import Logica.Poblacion;
 import java.awt.event.KeyEvent;
@@ -13,10 +14,10 @@ import javax.swing.JOptionPane;
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
     ArrayList<Personaje> p = new ArrayList<>();
-    
+
     Poblacion grupo = new Poblacion("Grupo1");
     Poblacion grupo2 = new Poblacion("Grupo2");
-            
+
     public FRM_Visor(Personaje p) {
         // Instancia de la ventana
         initComponents();
@@ -44,7 +45,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         grupo2.addPersonaje(this.p.get(1));
         grupo2.addPersonaje(this.p.get(2));
         grupo2.addPersonaje(this.p.get(3));
-        
+
         // Integración del listener 
         addKeyListener(this);
         setFocusable(true);
@@ -81,6 +82,23 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
             case 99:
                 p.get(0).morir();
                 break;
+            case 80: {              // Quitar y adaptar para que se active al coger el huevo
+                /// tambien adaptar a gestion de poblaciones
+                ///
+                ///
+                //
+                p.get(0).interrumpir();
+                panel.remove(p.get(0));
+                Personaje mas;
+                try {
+                    mas = new Mascota(p.get(0), panel);
+                    p.set(0, mas);
+                } catch (IOException ex) {
+                    Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
+                }    
+                panel.add(p.get(0));
+            }
+            break;
             default:
                 break;
         }
@@ -89,33 +107,33 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                 p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
-                p.get(1).desplazamiento=38;
-                p.get(2).desplazamiento=38;
-                p.get(3).desplazamiento=38;
+                p.get(1).desplazamiento = 38;
+                p.get(2).desplazamiento = 38;
+                p.get(3).desplazamiento = 38;
                 break;
             case 'a':
                 p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
-                p.get(1).desplazamiento=37;
-                p.get(2).desplazamiento=37;
-                p.get(3).desplazamiento=37;
+                p.get(1).desplazamiento = 37;
+                p.get(2).desplazamiento = 37;
+                p.get(3).desplazamiento = 37;
                 break;
             case 's':
                 p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
-                p.get(1).desplazamiento=40;
-                p.get(2).desplazamiento=40;
-                p.get(3).desplazamiento=40;
+                p.get(1).desplazamiento = 40;
+                p.get(2).desplazamiento = 40;
+                p.get(3).desplazamiento = 40;
                 break;
             case 'd':
                 p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
-                p.get(1).desplazamiento=39;
-                p.get(2).desplazamiento=39;
-                p.get(3).desplazamiento=39;
+                p.get(1).desplazamiento = 39;
+                p.get(2).desplazamiento = 39;
+                p.get(3).desplazamiento = 39;
                 break;
             case 'e':
                 p.get(1).atacar();
@@ -143,11 +161,12 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
                 // Se interrumpe el hilo
                 for (int i = 0; i < p.size(); i++) {
-                    p.get(i).hilo.interrupt();
+                    p.get(i).interrumpir();
                 }
 
                 this.dispose();
                 break;
+
             default:
                 break;
         }

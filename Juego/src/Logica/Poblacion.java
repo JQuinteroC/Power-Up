@@ -12,7 +12,7 @@ public class Poblacion implements Composite {
     ArrayList<Composite> poblacion = new ArrayList<Composite>();
 
     public Poblacion(String nombre) {
-        this.nombrePoblacion=nombre;
+        this.nombrePoblacion = nombre;
     }
 
     @Override

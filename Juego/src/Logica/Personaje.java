@@ -1,6 +1,8 @@
 package Logica;
 
 import java.awt.Graphics;
+import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -243,14 +245,20 @@ public class Personaje extends JComponent implements Cloneable, Composite {
             hilo.start();
         }
     }
-    
+
     //operacion necesaria para el manejo de poblaciones
-    public void operacion(int accion){
-        if (accion == 1){
-            this.desplazamiento=39;
+    public void operacion(int accion) {
+        if (accion == 1) {
+            this.desplazamiento = 39;
             this.mover();
-            
-        } 
+        }
     }
-    
+
+    public void interrumpir() {
+        try {
+            hilo.interrupt();
+        } catch (Exception ex) {
+            System.out.println("hilo " + hilo.getName() + " no interrumpido");
+        }        
+    }
 }

@@ -186,21 +186,21 @@ public class Personaje extends JComponent implements Cloneable, Composite {
                     break;
                 case 1:
                     if (relacion) {
-                        g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 17, alto + 55, null);
+                        g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, -42 + desplazamientoVertical, ancho - 17, alto + 30, null);
                     } else {
                         g.drawImage(saltar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
                     }
                     break;
                 case 2:
                     if (relacion) {
-                        g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho - 38, alto - 18, null);
+                        g.drawImage(morir[numero].getImage(), 65 + desplazamientoHorizontal, 20 + desplazamientoVertical, ancho - 38, alto - 18, null);
                     } else {
                         g.drawImage(morir[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
                     }
                     break;
                 case 3:
                     if (relacion) {
-                        g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho + 266, alto + 55, null);
+                        g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, -30 + desplazamientoVertical, ancho + 150, alto + 55, null);
                     } else {
                         g.drawImage(atacar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
                     }

@@ -266,4 +266,17 @@ public class Personaje extends JComponent implements Cloneable, Composite {
             System.out.println("hilo " + hilo.getName() + " no interrumpido");
         }        
     }
+
+    public int getAncho() {
+        return ancho;
+    }
+    public int getAlto() {
+        return alto;
+    }
+    public int getDesplazamientoHorizontal(){
+        return desplazamientoHorizontal;
+    }
+    public int getDesplazamientoVertical(){
+        return desplazamientoVertical;
+    }
 }

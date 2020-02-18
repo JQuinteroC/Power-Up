@@ -2,6 +2,7 @@ package GUI;
 
 import Logica.Builder;
 import Logica.ConstructorDuende;
+import Logica.ConstructorHuevo;
 import Logica.ConstructorMago;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
@@ -152,7 +153,10 @@ public class FRM_Selector extends javax.swing.JFrame {
         Builder build = new Builder();
         build.setConstructor(new ConstructorMago());
         build.CrearPersonaje();
-        FRM_Visor ventana = new FRM_Visor(build.getPersonaje());
+        Builder build2 = new Builder();
+        build2.setConstructor(new ConstructorHuevo());
+        build2.CrearPersonaje();
+        FRM_Visor ventana = new FRM_Visor(build.getPersonaje(),build2.getPersonaje());
         ventana.setVisible(true);
         this.setVisible(false);
         dispose();
@@ -162,7 +166,10 @@ public class FRM_Selector extends javax.swing.JFrame {
         Builder build = new Builder();
         build.setConstructor(new ConstructorDuende());
         build.CrearPersonaje();
-        FRM_Visor ventana = new FRM_Visor(build.getPersonaje());
+        Builder build2 = new Builder();
+        build2.setConstructor(new ConstructorHuevo());
+        build2.CrearPersonaje();
+        FRM_Visor ventana = new FRM_Visor(build.getPersonaje(),build2.getPersonaje());
         ventana.setVisible(true);
         this.setVisible(false);
         dispose();

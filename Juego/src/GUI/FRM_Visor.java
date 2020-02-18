@@ -1,5 +1,8 @@
 package GUI;
 
+import Logica.Builder;
+import Logica.ConstructorHuevo;
+import Logica.Huevo;
 import Logica.Mascota;
 import Logica.Personaje;
 import Logica.Poblacion;
@@ -14,11 +17,11 @@ import javax.swing.JOptionPane;
 public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
     ArrayList<Personaje> p = new ArrayList<>();
-
+    ArrayList<Personaje> huevos = new ArrayList<>();
     Poblacion grupo = new Poblacion("Grupo1");
     Poblacion grupo2 = new Poblacion("Grupo2");
 
-    public FRM_Visor(Personaje p) {
+    public FRM_Visor(Personaje p, Personaje huevo) {
         // Instancia de la ventana
         initComponents();
         super.setLocationRelativeTo(null);
@@ -39,23 +42,35 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));
         panel.add(this.p.get(3));
-
         //se crean las poblaciones del patron Composite
         grupo.addPersonaje(this.p.get(0));
         grupo2.addPersonaje(this.p.get(1));
         grupo2.addPersonaje(this.p.get(2));
         grupo2.addPersonaje(this.p.get(3));
 
+        //Metiendo al huevito
+        huevo.setPanel(panel);
+        this.huevos.add(huevo);
+        this.huevos.get(0).setDesplazamientoVertical(250);
+        this.huevos.get(0).setDesplazamientoHorizontal(480);
+        panel.add(this.huevos.get(0));
+
         // Integración del listener 
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="Key listeners">  
     @Override
     public void keyPressed(KeyEvent e) {
         //JOptionPane.showMessageDialog(null, e.getKeyChar());
+        for (int i = 0; i < 4; i++) {
+            if (colision(p.get(i), huevos.get(0)) == true) {
+                
+            }
+        }
         switch (e.getKeyCode()) { //Personaje Individual
             case 39:
                 p.get(0).mover();
@@ -95,7 +110,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                     p.set(0, mas);
                 } catch (IOException ex) {
                     Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
-                }    
+                }
                 panel.add(p.get(0));
             }
             break;
@@ -216,4 +231,11 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     private javax.swing.JLabel fondo;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
+
+    private boolean colision(Personaje p, Personaje huevo) {
+        if ((p.getBounds().x > huevo.getX()) & (p.getBounds().x < huevo.getX())) {
+
+        }
+        return false;
+    }
 }

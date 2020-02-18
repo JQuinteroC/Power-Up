@@ -56,16 +56,20 @@ public class Mascota extends Decorador {
                                 personaje.numero++;
                                 switch (desplazamiento) { //Personaje Individual
                                     case 39:
-                                        personaje.desplazamientoHorizontal += 8;
+                                        personaje.desplazamientoHorizontal += 24;
+                                        desplazamiento = 0;
                                         break;
                                     case 38:
-                                        personaje.desplazamientoVertical -= 8;
+                                        personaje.desplazamientoVertical -= 24;
+                                        desplazamiento = 0;
                                         break;
                                     case 37:
-                                        personaje.desplazamientoHorizontal -= 8;
+                                        personaje.desplazamientoHorizontal -= 24;
+                                        desplazamiento = 0;
                                         break;
                                     case 40:
-                                        personaje.desplazamientoVertical += 8;
+                                        personaje.desplazamientoVertical += 24;
+                                        desplazamiento = 0;
                                         break;
                                     default:
                                         break;

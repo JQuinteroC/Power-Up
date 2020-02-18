@@ -251,6 +251,7 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     }
 
     //operacion necesaria para el manejo de poblaciones
+    @Override
     public void operacion(int accion) {
         if (accion == 1) {
             this.desplazamiento = 39;

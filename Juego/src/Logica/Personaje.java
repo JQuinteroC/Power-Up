@@ -76,16 +76,20 @@ public class Personaje extends JComponent implements Cloneable, Composite {
                                 numero++;
                                 switch (desplazamiento) { //Personaje Individual
                                     case 39:
-                                        desplazamientoHorizontal += 8;
+                                        desplazamientoHorizontal += 24;
+                                        desplazamiento = 0;
                                         break;
                                     case 38:
-                                        desplazamientoVertical -= 8;
+                                        desplazamientoVertical -= 24;
+                                        desplazamiento = 0;
                                         break;
                                     case 37:
-                                        desplazamientoHorizontal -= 8;
+                                        desplazamientoHorizontal -= 24;
+                                        desplazamiento = 0;
                                         break;
                                     case 40:
-                                        desplazamientoVertical += 8;
+                                        desplazamientoVertical += 24;
+                                        desplazamiento = 0;
                                         break;
                                     default:
                                         break;

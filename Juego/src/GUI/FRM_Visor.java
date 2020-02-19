@@ -165,9 +165,11 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         }
         for (int i = 0; i < p.size(); i++) {
             for (int j = 0; j < huevos.size(); j++) {
-                if (colision(p.get(i), huevos.get(j)) == true) {
+                if (p.get(i).hitbox.intersects(huevos.get(j).hitbox)) {
+//                if (colision(p.get(i), huevos.get(j)) == true) {
                     huevos.get(j).interrumpir();
                     panel.remove(huevos.get(j));
+                    huevos.remove(j);
                     p.get(i).interrumpir();
                     panel.remove(p.get(i));
                     Personaje mas;

@@ -18,6 +18,7 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     protected ImageIcon[] morir;
     protected ImageIcon[] atacar;
     public int desplazamiento;
+    public int tempDesplazamiento;
     int x = 0; // Variable de identificación de animación
     int numero = 0;
     int ancho = 0;
@@ -78,18 +79,22 @@ public class Personaje extends JComponent implements Cloneable, Composite {
                                 switch (desplazamiento) { //Personaje Individual
                                     case 39:
                                         desplazamientoHorizontal += 24;
+                                        tempDesplazamiento=desplazamiento;
                                         desplazamiento = 0;
                                         break;
                                     case 38:
                                         desplazamientoVertical -= 24;
+                                        tempDesplazamiento=desplazamiento;
                                         desplazamiento = 0;
                                         break;
                                     case 37:
                                         desplazamientoHorizontal -= 24;
+                                        tempDesplazamiento=desplazamiento;
                                         desplazamiento = 0;
                                         break;
                                     case 40:
                                         desplazamientoVertical += 24;
+                                        tempDesplazamiento=desplazamiento;
                                         desplazamiento = 0;
                                         break;
                                     default:
@@ -221,7 +226,9 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     // ANIMACIONES
     public void mover() {
         x = 0;
-        numero = 0;
+        if(!((tempDesplazamiento>36)&(tempDesplazamiento<41))){
+            numero = 0;
+        }
         if (!hilo.isAlive()) {
             hilo.start();
         }
@@ -265,19 +272,22 @@ public class Personaje extends JComponent implements Cloneable, Composite {
             hilo.interrupt();
         } catch (Exception ex) {
             System.out.println("hilo " + hilo.getName() + " no interrumpido");
-        }        
+        }
     }
 
     public int getAncho() {
         return ancho;
     }
+
     public int getAlto() {
         return alto;
     }
-    public int getDesplazamientoHorizontal(){
+
+    public int getDesplazamientoHorizontal() {
         return desplazamientoHorizontal;
     }
-    public int getDesplazamientoVertical(){
+
+    public int getDesplazamientoVertical() {
         return desplazamientoVertical;
     }
 }

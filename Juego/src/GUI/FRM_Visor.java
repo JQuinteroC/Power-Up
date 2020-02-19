@@ -66,24 +66,6 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         //JOptionPane.showMessageDialog(null, e.getKeyChar());
-        for (int i = 0; i < p.size(); i++) {
-            for (int j = 0; j < huevos.size(); j++) {
-                if (colision(p.get(i), huevos.get(j)) == true) {
-                    huevos.get(j).interrumpir();
-                    panel.remove(huevos.get(j));
-                    p.get(i).interrumpir();
-                    panel.remove(p.get(i));
-                    Personaje mas;
-                    try {
-                        mas = new Mascota(p.get(i), panel);
-                        p.set(i, mas);
-                    } catch (IOException ex) {
-                        Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    panel.add(p.get(i));
-                }
-            }
-        }
         switch (e.getKeyCode()) { //Personaje Individual
             case 39:
                 p.get(0).mover();
@@ -180,6 +162,24 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
 
             default:
                 break;
+        }
+        for (int i = 0; i < p.size(); i++) {
+            for (int j = 0; j < huevos.size(); j++) {
+                if (colision(p.get(i), huevos.get(j)) == true) {
+                    huevos.get(j).interrumpir();
+                    panel.remove(huevos.get(j));
+                    p.get(i).interrumpir();
+                    panel.remove(p.get(i));
+                    Personaje mas;
+                    try {
+                        mas = new Mascota(p.get(i), panel);
+                        p.set(i, mas);
+                    } catch (IOException ex) {
+                        Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    panel.add(p.get(i));
+                }
+            }
         }
     }
 

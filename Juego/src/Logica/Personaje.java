@@ -257,6 +257,18 @@ public class Personaje extends JComponent implements Cloneable, Composite {
         if (accion == 1) {
             this.desplazamiento = 39;
             this.mover();
+        } 
+        if (accion == 2) {
+            this.desplazamiento = 38;
+            this.mover();
+        }
+        if (accion == 3) {
+            this.desplazamiento = 37;
+            this.mover();
+        }
+        if (accion == 4) {
+            this.desplazamiento = 40;
+            this.mover();
         }
     }
 

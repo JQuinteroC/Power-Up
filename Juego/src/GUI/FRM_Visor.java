@@ -20,6 +20,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     ArrayList<Personaje> huevos = new ArrayList<>();
     Poblacion grupo = new Poblacion("Grupo1");
     Poblacion grupo2 = new Poblacion("Grupo2");
+    int numeroPersonaje = 1;
 
     public FRM_Visor(Personaje p, Personaje huevo) {
         // Instancia de la ventana
@@ -42,6 +43,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         panel.add(this.p.get(1));
         panel.add(this.p.get(2));
         panel.add(this.p.get(3));
+
         //se crean las poblaciones del patron Composite
         grupo.addPersonaje(this.p.get(0));
         grupo2.addPersonaje(this.p.get(1));
@@ -86,20 +88,22 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         }
         switch (e.getKeyCode()) { //Personaje Individual
             case 39:
-                p.get(0).mover();
-                p.get(0).desplazamiento = 39;
+                grupo.operacion(1);
                 break;
             case 38:
-                p.get(0).mover();
-                p.get(0).desplazamiento = 38;
+                grupo.operacion(2);
+                //  p.get(0).mover();
+                // p.get(0).desplazamiento = 38;
                 break;
             case 37:
-                p.get(0).mover();
-                p.get(0).desplazamiento = 37;
+                grupo.operacion(3);
+                // p.get(0).mover();
+                // p.get(0).desplazamiento = 37;
                 break;
             case 40:
-                p.get(0).mover();
-                p.get(0).desplazamiento = 40;
+                grupo.operacion(4);
+                // p.get(0).mover();
+                // p.get(0).desplazamiento = 40;
                 break;
             case 97:
                 p.get(0).atacar();
@@ -115,36 +119,31 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         }
         switch (e.getKeyChar()) { //Personaje clonado
             case 'w':
-                p.get(1).mover();
-                p.get(2).mover();
-                p.get(3).mover();
-                p.get(1).desplazamiento = 38;
+                grupo2.operacion(2);
+                /*p.get(1).desplazamiento = 38;
                 p.get(2).desplazamiento = 38;
-                p.get(3).desplazamiento = 38;
+                p.get(3).desplazamiento = 38;*/
                 break;
             case 'a':
-                p.get(1).mover();
+                grupo2.operacion(3);
+                /*p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
                 p.get(1).desplazamiento = 37;
                 p.get(2).desplazamiento = 37;
-                p.get(3).desplazamiento = 37;
+                p.get(3).desplazamiento = 37;*/
                 break;
             case 's':
-                p.get(1).mover();
+                grupo2.operacion(4);
+                /* p.get(1).mover();
                 p.get(2).mover();
                 p.get(3).mover();
                 p.get(1).desplazamiento = 40;
                 p.get(2).desplazamiento = 40;
-                p.get(3).desplazamiento = 40;
+                p.get(3).desplazamiento = 40;*/
                 break;
             case 'd':
-                p.get(1).mover();
-                p.get(2).mover();
-                p.get(3).mover();
-                p.get(1).desplazamiento = 39;
-                p.get(2).desplazamiento = 39;
-                p.get(3).desplazamiento = 39;
+                grupo2.operacion(1);
                 break;
             case 'e':
                 p.get(1).atacar();
@@ -174,10 +173,40 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                 for (int i = 0; i < p.size(); i++) {
                     p.get(i).interrumpir();
                 }
-
+                numeroPersonaje = 0;
                 this.dispose();
                 break;
+            case '+':
+                boolean agregado = false;
+                for (int i = 0; i < 4; i++) {
+                    if (grupo.isHere(p.get(i))) {
+                    } else {
+                        grupo2.deletePerson(p.get(i));
+                        grupo.addPersonaje(this.p.get(i));
+                        agregado = true;
+                        i = 10;
+                    }
+                }
+                if (!agregado) {
+                    JOptionPane.showMessageDialog(null, "No hay mas personajes para agregar");
+                }
 
+                break;
+            case '-':
+                agregado = false;
+                for (int i = 3; i >= 0; i--) {
+                    if (grupo2.isHere(p.get(i))) {
+                    } else {
+                        grupo.deletePerson(p.get(i));
+                        grupo2.addPersonaje(this.p.get(i));
+                        agregado = true;
+                        i = -1;
+                    }
+                }
+                if (!agregado) {
+                    JOptionPane.showMessageDialog(null, "No hay mas personajes para agregar");
+                }
+                break;
             default:
                 break;
         }

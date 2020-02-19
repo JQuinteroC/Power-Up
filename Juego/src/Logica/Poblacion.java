@@ -23,6 +23,18 @@ public class Poblacion implements Composite {
         }
 
     }
+    
+    public boolean isHere(Personaje p){
+        if(poblacion.contains(p)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void deletePerson(Personaje p){
+        poblacion.remove(p);
+    }
 
     public void addPersonaje(Composite p) {
         this.poblacion.add(p);

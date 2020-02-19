@@ -43,6 +43,33 @@ public class Mascota extends Decorador {
             personaje.hilo.start();
         }
     }
+    
+    @Override
+    public void saltar() {
+        personaje.x = 1;
+        personaje.numero = 0;
+        if (!personaje.hilo.isAlive()) {
+            personaje.hilo.start();
+        }
+    }
+
+    @Override
+    public void morir() {
+        personaje.x = 2;
+        personaje.numero = 0;
+        if (!personaje.hilo.isAlive()) {
+            personaje.hilo.start();
+        }
+    }
+
+    @Override
+    public void atacar() {
+        personaje.x = 3;
+        personaje.numero = 0;
+        if (!personaje.hilo.isAlive()) {
+            personaje.hilo.start();
+        }
+    }
 
     @Override
     public void setHilo(int mover, int saltar, int morir, int atacar, int sleep) {
@@ -75,15 +102,28 @@ public class Mascota extends Decorador {
                                         break;
                                 }
                                 personaje.numero = personaje.numero % mover;
-                                // personaje.panel.repaint();
                                 panel.repaint();
                                 personaje.hilo.sleep(sleep);
                                 break;
                             case 1:
                                 personaje.numero++;
                                 personaje.numero = personaje.numero % saltar;
-                                personaje.panel.repaint();
+                                panel.repaint();
                                 personaje.hilo.sleep(sleep);
+                                break;
+                            case 2:
+                                personaje.numero++;
+                                personaje.numero = personaje.numero % morir;
+                                panel.repaint();
+                                personaje.hilo.sleep(sleep);
+                                break;
+                            case 3:
+                                personaje.numero++;
+                                personaje.numero = personaje.numero % atacar;
+                                panel.repaint();
+                                personaje.hilo.sleep(sleep);
+                                break;
+                            default:
                                 break;
                         }
                     }

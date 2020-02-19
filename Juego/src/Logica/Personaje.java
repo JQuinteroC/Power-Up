@@ -25,6 +25,7 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     int desplazamientoVertical = 0;
     int desplazamientoHorizontal = 0;
     boolean relacion = false; // Variable solo para mantener el aspecto en las animaciónes del Mago
+    boolean animar = false; // Controla la ejecución de la animación
     static JPanel panel = null;
     public Thread hilo;
 

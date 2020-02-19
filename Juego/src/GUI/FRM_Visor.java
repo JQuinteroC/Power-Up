@@ -110,23 +110,6 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
             case 99:
                 p.get(0).morir();
                 break;
-            case 80: {              // Quitar y adaptar para que se active al coger el huevo
-                /// tambien adaptar a gestion de poblaciones
-                ///
-                ///
-                //
-                p.get(0).interrumpir();
-                panel.remove(p.get(0));
-                Personaje mas;
-                try {
-                    mas = new Mascota(p.get(0), panel);
-                    p.set(0, mas);
-                } catch (IOException ex) {
-                    Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                panel.add(p.get(0));
-            }
-            break;
             default:
                 break;
         }
@@ -246,8 +229,8 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     // End of variables declaration//GEN-END:variables
 
     private boolean colision(Personaje p, Personaje huevo) {
-        System.out.println("X Duende: "+p.getDesplazamientoHorizontal()+", Y Duende: "+p.getDesplazamientoVertical() );
-        System.out.println("X Huevo: "+huevo.getDesplazamientoHorizontal()+", Y Huevo: "+huevo.getDesplazamientoVertical() );
+        System.out.println("X Duende: " + p.getDesplazamientoHorizontal() + ", Y Duende: " + p.getDesplazamientoVertical());
+        System.out.println("X Huevo: " + huevo.getDesplazamientoHorizontal() + ", Y Huevo: " + huevo.getDesplazamientoVertical());
         if ((p.getDesplazamientoHorizontal() + p.getAncho() > huevo.getDesplazamientoHorizontal()) & (p.getDesplazamientoHorizontal() < huevo.getDesplazamientoHorizontal() + (huevo.getAncho())) & (p.getDesplazamientoVertical() > huevo.getDesplazamientoVertical()) & (p.getDesplazamientoVertical() < huevo.getDesplazamientoVertical() + (huevo.getAlto()))) {
             return true;
         } else {

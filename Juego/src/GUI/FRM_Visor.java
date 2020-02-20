@@ -20,7 +20,6 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
     ArrayList<Personaje> huevos = new ArrayList<>();
     Poblacion grupo = new Poblacion("Grupo1");
     Poblacion grupo2 = new Poblacion("Grupo2");
-    int numeroPersonaje = 1;
 
     public FRM_Visor(Personaje p, Personaje huevo) {
         // Instancia de la ventana
@@ -74,27 +73,21 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                 break;
             case 38:
                 grupo.operacion(2);
-                //  p.get(0).mover();
-                // p.get(0).desplazamiento = 38;
                 break;
             case 37:
                 grupo.operacion(3);
-                // p.get(0).mover();
-                // p.get(0).desplazamiento = 37;
                 break;
             case 40:
                 grupo.operacion(4);
-                // p.get(0).mover();
-                // p.get(0).desplazamiento = 40;
                 break;
             case 97:
-                p.get(0).atacar();
+                grupo.operacion(5);
                 break;
             case 98:
-                p.get(0).saltar();
+                grupo.operacion(7);
                 break;
             case 99:
-                p.get(0).morir();
+                grupo.operacion(6);
                 break;
             default:
                 break;
@@ -102,45 +95,24 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         switch (e.getKeyChar()) { //Personaje clonado
             case 'w':
                 grupo2.operacion(2);
-                /*p.get(1).desplazamiento = 38;
-                p.get(2).desplazamiento = 38;
-                p.get(3).desplazamiento = 38;*/
                 break;
             case 'a':
                 grupo2.operacion(3);
-                /*p.get(1).mover();
-                p.get(2).mover();
-                p.get(3).mover();
-                p.get(1).desplazamiento = 37;
-                p.get(2).desplazamiento = 37;
-                p.get(3).desplazamiento = 37;*/
                 break;
             case 's':
                 grupo2.operacion(4);
-                /* p.get(1).mover();
-                p.get(2).mover();
-                p.get(3).mover();
-                p.get(1).desplazamiento = 40;
-                p.get(2).desplazamiento = 40;
-                p.get(3).desplazamiento = 40;*/
                 break;
             case 'd':
                 grupo2.operacion(1);
                 break;
             case 'e':
-                p.get(1).atacar();
-                p.get(2).atacar();  // espacio:32,enter:10,e:69, f:70,a:65, 1:97, 2:98, 3: 99
-                p.get(3).atacar();
+                grupo2.operacion(5);
                 break;
             case 'r':
-                p.get(1).morir();
-                p.get(2).morir();
-                p.get(3).morir();
+                grupo2.operacion(6);
                 break;
             case 'f':
-                p.get(1).saltar();
-                p.get(2).saltar();
-                p.get(3).saltar();
+                grupo2.operacion(7);
                 break;
             case 'q':
                 FRM_Selector selector = null;
@@ -152,10 +124,9 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                 selector.setVisible(true);
 
                 // Se interrumpe el hilo
-                for (int i = 0; i < p.size(); i++) {
-                    p.get(i).interrumpir();
-                }
-                numeroPersonaje = 0;
+                grupo.operacion(8);
+                grupo2.operacion(8);
+                ;
                 this.dispose();
                 break;
             case '+':
@@ -195,14 +166,27 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
         for (int i = 0; i < p.size(); i++) {
             for (int j = 0; j < huevos.size(); j++) {
                 if (colision(p.get(i), huevos.get(j)) == true) {
+                    int team = 0;
                     huevos.get(j).interrumpir();
                     panel.remove(huevos.get(j));
                     p.get(i).interrumpir();
                     panel.remove(p.get(i));
+                    if (grupo.isHere(p.get(i))) {
+                        grupo.deletePerson(p.get(i));
+                        team = 1;
+                    } else {
+                        grupo2.deletePerson(p.get(i));
+                        team = 2;
+                    }
                     Personaje mas;
                     try {
                         mas = new Mascota(p.get(i), panel);
                         p.set(i, mas);
+                        if (team==1) {
+                            grupo.addPersonaje(mas);
+                        } else {
+                            grupo2.addPersonaje(mas);
+                        }
                     } catch (IOException ex) {
                         Logger.getLogger(FRM_Visor.class.getName()).log(Level.SEVERE, null, ex);
                     }

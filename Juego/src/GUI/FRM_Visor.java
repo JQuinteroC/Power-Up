@@ -169,6 +169,7 @@ public class FRM_Visor extends javax.swing.JFrame implements KeyListener {
                     int team = 0;
                     huevos.get(j).interrumpir();
                     panel.remove(huevos.get(j));
+                    huevos.remove(j);
                     p.get(i).interrumpir();
                     panel.remove(p.get(i));
                     if (grupo.isHere(p.get(i))) {

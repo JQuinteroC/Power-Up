@@ -26,7 +26,7 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     int alto = 0;
     int desplazamientoVertical = 0;
     int desplazamientoHorizontal = 0;
-    public Rectangle hitbox;
+    Rectangle hitbox;
     boolean relacion = false; // Variable solo para mantener el aspecto en las animaciónes del Mago
     boolean animar = false; // Controla la ejecución de la animación
     static JPanel panel = null;
@@ -54,13 +54,11 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     }
 
     public void setDesplazamientoVertical(int desplazamiento) {
-        this.desplazamientoVertical = desplazamiento;
-        this.hitbox.y = desplazamiento+(alto/4);
+        this.desplazamientoVertical = desplazamiento;      
     }
 
     public void setDesplazamientoHorizontal(int desplazamiento) {
         this.desplazamientoHorizontal = desplazamiento;
-        this.hitbox.x = desplazamiento+(ancho/2)-10;
     }
 
     public void setAncho(int ancho) {
@@ -69,6 +67,14 @@ public class Personaje extends JComponent implements Cloneable, Composite {
 
     public void setAlto(int alto) {
         this.alto = alto;
+    }
+    
+    public int getAncho() {
+        return ancho;
+    }
+
+    public int getAlto() {
+        return alto;
     }
 
     public void setHilo(int mover, int saltar, int morir, int atacar, int sleep) {
@@ -173,6 +179,14 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     public ImageIcon[] getAtacar() {
         return atacar;
     }
+    
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+    
+    public void setHitbox(int x,int y,int ancho,int alto) {
+        hitbox = new Rectangle(x+(ancho/2)-10, y+(alto/4), (ancho/2)-40, (alto/2)+25);
+    }
 
     public void setAtacar(ImageIcon[] atacar) {
         this.atacar = atacar;
@@ -199,8 +213,8 @@ public class Personaje extends JComponent implements Cloneable, Composite {
     public void paint(Graphics g) {
         try {
             g.drawRect(hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-            g.drawRect(desplazamientoHorizontal+(ancho/2)-10, desplazamientoVertical+(alto/4), (ancho/2)-40, (alto/2)+25);
-            g.drawRect(desplazamientoHorizontal+(ancho/2)-3, desplazamientoVertical+(alto/4)-30, ancho, (alto/2)+60);
+//            g.drawRect(desplazamientoHorizontal+(ancho/2)-10, desplazamientoVertical+(alto/4), (ancho/2)-40, (alto/2)+25);
+//            g.drawRect(desplazamientoHorizontal+(ancho/2)-3, desplazamientoVertical+(alto/4)-30, ancho, (alto/2)+60);
             switch (x) {
                 case 0:
                     g.drawImage(caminar[numero].getImage(), 50 + desplazamientoHorizontal, 0 + desplazamientoVertical, ancho, alto, null);
@@ -284,14 +298,6 @@ public class Personaje extends JComponent implements Cloneable, Composite {
         } catch (Exception ex) {
             System.out.println("hilo " + hilo.getName() + " no interrumpido");
         }
-    }
-
-    public int getAncho() {
-        return ancho;
-    }
-
-    public int getAlto() {
-        return alto;
     }
 
     public int getDesplazamientoHorizontal() {
